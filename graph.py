@@ -105,46 +105,23 @@ def root_mean_arithmetic_value(array):
     return sum(array) / len(array)
 
 
-os.system("rm -rf Laba\ 1.4.8/graphs")
-os.system("mkdir -p Laba\ 1.4.8/graphs")
+os.system("rm -rf Laba\ 2.1.1/graphs")
+os.system("mkdir -p Laba\ 2.1.1/graphs")
+
+#types: approx1 - линейная аппроксимация, график проходит через нулевую   точку, 
+#       approx2 - линейная аппроксимация, график проходит через ненулевую точку
+#       curve - кривая, котрую надо промести с апроксимизацией
 
 data_pltDataXY = {  
     "plt1": {
             "type": "approx1",
-            "grName": "Зависимость f(n)",
-            "dataY": [[0, 3.13, 6.49, 9.74, 12.98, 16.25]],
-            "dataX": [[0, 1, 2, 3, 4, 5]],
-            "names": ["Медь"],
-            "nameX": "n",
-            "nameY": "f, кГц"
-            },
-    "plt2": {
-            "type": "approx1",
-            "grName": "Зависимость f(n)",
-            "dataY": [[0, 4.01, 8.15, 12.05, 16.08, 20.11]],
-            "dataX": [[0, 1, 2, 3, 4, 5]],
-            "names": ["Аллюминий"],
-            "nameX": "n",
-            "nameY": "f, кГц"
-    },
-    "plt3": {
-            "type": "approx1",
-            "grName": "Зависимость f(n)",
-            "dataY": [[0, 4.13, 8.27, 12.39, 16.53, 20.65]],
-            "dataX": [[0, 1, 2, 3, 4, 5]],
-            "names": ["Сталь"],
-            "nameX": "n",
-            "nameY": "f, кГц"
-    },
-    "plt4": {
-            "type": "curve",
-            "grName": "A(f)",
-            "dataX": [[4.2527, 4.2537, 4.2543, 4.2555, 4.2572, 4.2523, 4.2513, 4.2501, 4.2489]],
-            "dataY": [[8, 6, 4, 3, 2, 6, 4, 3, 2]],
-            "names": ["AЧХ"],
-            "nameX": "f, КГц",
-            "nameY": "A, кл"
-    }
+            "grName": "Зависимость ΔT(N)",
+            "dataY": [[0, 360.68, 852.52, 1250.69, 1640.62], [0, 196.38, 373.05, 564.26, 826.39]],
+            "dataX": [[0, 1.8, 4.08, 6.26, 8.01], [0, 1.94, 4.05, 6.01, 7.91]],
+            "names": ["Экс. №1", "Экс. №2"],
+            "nameX": "ΔT, K",
+            "nameY": "N, мВт"
+            }
 }
 for i in range(1, len(data_pltDataXY)+1):
     for j in range(len(data_pltDataXY.get("plt" + str(i)).get("dataY"))):
@@ -154,7 +131,7 @@ for i in range(1, len(data_pltDataXY)+1):
         type = data_pltDataXY.get("plt" + str(i)).get("type")
         nameX = data_pltDataXY.get("plt" + str(i)).get("nameX")
         nameY = data_pltDataXY.get("plt" + str(i)).get("nameY")
-        plot_scatter(dataX, dataY, 0, 0.01)
+        plot_scatter(dataX, dataY, 0.2, 0.02)
         #print(j)
         create_approximate_line(dataX, dataY, j, type, label=names[j], coeff=True)
 
@@ -166,5 +143,5 @@ for i in range(1, len(data_pltDataXY)+1):
     plt.title(data_pltDataXY.get("plt" + str(i)).get("grName"))
     plt.grid(True)
     plt.legend()
-    plt.savefig(f"Laba 1.4.8/graphs/figure{i}")
+    plt.savefig(f"Laba 2.1.1/graphs/figure{i}")
     plt.show()
