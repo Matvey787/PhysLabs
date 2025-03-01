@@ -2,4 +2,4 @@
 .fls
 main.log
 .gz
-.aux
+*.aux
