@@ -107,8 +107,8 @@ def root_mean_arithmetic_value(array):
     return sum(array) / len(array)
 
 
-os.system("rm -rf Laba\ 2.2.3/graphs")
-os.system("mkdir -p Laba\ 2.2.3/graphs")
+os.system("rm -rf Laba 2.1.6/graphs")
+os.system("mkdir -p Laba 2.1.6/graphs")
 
 #types: approx1 - линейная аппроксимация, график проходит через нулевую   точку, 
 #       approx2 - линейная аппроксимация, график проходит через ненулевую точку
@@ -128,68 +128,26 @@ os.system("mkdir -p Laba\ 2.2.3/graphs")
 
 data_pltDataXY = {  
     "plt1": {
-            "type": "approx2",
-            "grName": "Зависимость R(Qн)",
-            "dataX": [[35.88, 72.25, 109.28, 147.24, 183.89, 225.05, 267.23, 306.59]],
-            "dataY": [[19.78, 20.01, 20.30, 20.56, 20.68, 20.92, 21.19, 21.38]],
-            "names": ["T = 23.4°C"],
-            "nameX": "Qн, мВт",
-            "nameY": "R, Ом"
+            "type": "approx1",
+            "grName": "Зависимость ΔT(ΔP)",
+            "dataX": [[4, 3.7, 3.4, 3.1, 2.89], [4, 3.7, 3.4, 3.1, 2.89], 
+                      [4, 3.7, 3.4, 3.1, 2.89]],
+            "dataY": [[2.87, 2.51, 2.24, 1.94, 1.62], [2.26, 1.93, 1.69, 1.41, 1.18], 
+                      [2.09, 1.72, 1.54, 1.32, 1.09]],
+            "names": ["T = 27°C", "T = 47°C", "T = 67°C"],
+            "nameX": "ΔP, атм",
+            "nameY": "ΔT, K"
             },
+
     "plt2": {
             "type": "approx2",
-            "grName": "Зависимость R(Qн)",
-            "dataY": [[20.42, 20.65, 20.95, 21.17, 21.42, 21.55, 21.76, 21.98]],
-            "dataX": [[34.56, 69.74, 107.40, 144.69, 184.87, 220.55, 260.30, 300.38]],
-            "names": ["T = 33.4°C"],
-            "nameX": "Qн, мВт",
-            "nameY": "R, Ом"
-            },
-    "plt3": {
-            "type": "approx2",
-            "grName": "Зависимость R(Qн)",
-            "dataY": [[21.47, 21.80, 22.01, 22.25, 22.34, 22.06, 22.75, 22.95]],
-            "dataX": [[34.45, 69.41, 104.99, 145.64, 179.04, 216.09, 253.25, 292.31]],
-            "names": ["T = 48.4°C"],
-            "nameX": "Qн, мВт",
-            "nameY": "R, Ом"
-            },
-    "plt4": {
-            "type": "approx2",
-            "grName": "Зависимость R(Qн)",
-            "dataY": [[21.47, 21.80, 22.01, 22.25, 22.34, 22.06, 22.75, 22.95]],
-            "dataX": [[34.14, 69.20, 104.17, 139.71, 175.71, 213.14, 249.96, 288.15]],
-            "names": ["T = 58.4°C"],
-            "nameX": "Qн, мВт",
-            "nameY": "R, Ом"
-            },
-    "plt5": {
-            "type": "approx2",
-            "grName": "Зависимость R(Qн)",
-            "dataY": [[23.05, 23.11, 23.44, 23.50, 23.77, 23.98, 24.12, 24.25]],
-            "dataX": [[33.59, 67.60, 102.57, 137.86, 173.36, 208.24, 246.85, 289.04]],
-            "names": ["T = 68.4°C"],
-            "nameX": "Qн, мВт",
-            "nameY": "R, Ом"
-            },
-    "plt6": {
-            "type": "approx2",
-            "grName": "Зависимость R(T)",
-            "dataY": [[18.6, 20.27, 21.4, 21.4, 22.85]],
-            "dataX": [[23.4, 33.4, 48.4, 58.4, 68.4]],
-            "names": [""],
-            "nameX": "T, °C",
-            "nameY": "R, Ом"
-            },
-    "plt7": {
-            "type": "approx1",
-            "grName": "Зависимость ln(k) от ln(T)",
-            "dataY": [[3.39, 3.40, 3.56, 3.54, 3.48]],
-            "dataX": [[5.69, 5.72, 5.77, 5.8, 5.83]],
-            "names": [""],
-            "nameX": "ln(T)",
-            "nameY": "ln(k)"
-            }
+            "grName": "Зависимость ΔT(ΔP)",
+            "dataX": [[3.33, 3.13, 2.94]],
+            "dataY": [[0.66, 0.50, 0.46]],
+            "names": ["μ от Т^(-1)"],
+            "nameX": "$T^{-1}$, $10^{-3}$ K$^{-1}$",
+            "nameY": "$\\mu$, $10^{-5} \\text{ Па / K}$"
+    }
     }
 for i in range(1, len(data_pltDataXY)+1):
     for j in range(len(data_pltDataXY.get("plt" + str(i)).get("dataY"))):
@@ -199,7 +157,7 @@ for i in range(1, len(data_pltDataXY)+1):
         type = data_pltDataXY.get("plt" + str(i)).get("type")
         nameX = data_pltDataXY.get("plt" + str(i)).get("nameX")
         nameY = data_pltDataXY.get("plt" + str(i)).get("nameY")
-        plot_scatter(dataX, dataY, 0.2, 0.02)
+        plot_scatter(dataX, dataY, 0.1, 0.02)
         #print(j)
         create_approximate_line(dataX, dataY, j, type, label=names[j], coeff=True)
 
@@ -211,5 +169,5 @@ for i in range(1, len(data_pltDataXY)+1):
     plt.title(data_pltDataXY.get("plt" + str(i)).get("grName"))
     plt.grid(True)
     plt.legend()
-    plt.savefig(f"Laba 2.2.3/graphs/figure{i}")
+    plt.savefig(f"Laba 2.1.6/graphs/figure{i}")
     plt.show()
