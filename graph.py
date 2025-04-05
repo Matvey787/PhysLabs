@@ -107,8 +107,8 @@ def root_mean_arithmetic_value(array):
     return sum(array) / len(array)
 
 
-os.system("rm -rf Laba 2.1.6/graphs")
-os.system("mkdir -p Laba 2.1.6/graphs")
+os.system("rm -rf Laba 1.3.3/graphs")
+os.system("mkdir -p Laba 1.3.3/graphs")
 
 #types: approx1 - линейная аппроксимация, график проходит через нулевую   точку, 
 #       approx2 - линейная аппроксимация, график проходит через ненулевую точку
@@ -129,24 +129,23 @@ os.system("mkdir -p Laba 2.1.6/graphs")
 data_pltDataXY = {  
     "plt1": {
             "type": "approx1",
-            "grName": "Зависимость ΔT(ΔP)",
-            "dataX": [[4, 3.7, 3.4, 3.1, 2.89], [4, 3.7, 3.4, 3.1, 2.89], 
-                      [4, 3.7, 3.4, 3.1, 2.89]],
-            "dataY": [[2.87, 2.51, 2.24, 1.94, 1.62], [2.26, 1.93, 1.69, 1.41, 1.18], 
-                      [2.09, 1.72, 1.54, 1.32, 1.09]],
-            "names": ["T = 27°C", "T = 47°C", "T = 67°C"],
-            "nameX": "ΔP, атм",
-            "nameY": "ΔT, K"
+            "grName": "Зависимость Q(ΔP)",
+            "dataX": [[9.81, 19.61, 29.43, 39.24, 49.05, 58.86, 68.67, 74.48, 88.29],
+                      [9.81, 19.61, 29.43, 35.32, 39.24, 49.05, 58.86]],
+            "dataY": [[17.72, 35.17, 56.37, 74.54, 95.09, 113.40, 131.99, 151.13, 171.03],
+                      [49.39, 102.25, 168.12, 207.4, 229.2, 287.45, 349.21]],
+            "names": ["$d_1 = 3.95 мм$", "$d_2 = 5.30 мм$"],
+            "nameX": "ΔP, Па",
+            "nameY": "Q, мл/c"
             },
-
     "plt2": {
             "type": "approx2",
-            "grName": "Зависимость ΔT(ΔP)",
-            "dataX": [[3.33, 3.13, 2.94]],
-            "dataY": [[0.66, 0.50, 0.46]],
-            "names": ["μ от Т^(-1)"],
-            "nameX": "$T^{-1}$, $10^{-3}$ K$^{-1}$",
-            "nameY": "$\\mu$, $10^{-5} \\text{ Па / K}$"
+            "grName": "Зависимость ΔP(Δx)",
+            "dataX": [[50, 40, 30, 11.2], [50, 40, 30, 11.2]],
+            "dataY": [[58.86, 51.01, 37.28, 29.43], [49.05, 41.2, 35.32, 49.95]],
+            "names": ["Type 1", "Type 2"],
+            "nameX": "Δx, см",
+            "nameY": "ΔP, Па"
     }
     }
 for i in range(1, len(data_pltDataXY)+1):
@@ -169,5 +168,5 @@ for i in range(1, len(data_pltDataXY)+1):
     plt.title(data_pltDataXY.get("plt" + str(i)).get("grName"))
     plt.grid(True)
     plt.legend()
-    plt.savefig(f"Laba 2.1.6/graphs/figure{i}")
+    plt.savefig(f"Laba 1.3.3/graphs/figure{i}")
     plt.show()
