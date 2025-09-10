@@ -6,7 +6,7 @@ import numpy as np
 from scipy.interpolate import interp1d
 import sys
 
-colors = ['orange', 'blue', 'green', 'red', 'yellow']
+colors = ['orange', 'blue', 'green', 'red', 'yellow', 'purple']
 
 
 def calculate_coefficient(data_x, data_y, method='method1'):
@@ -128,25 +128,42 @@ os.system("mkdir -p Laba 1.3.3/graphs")
 
 data_pltDataXY = {  
     "plt1": {
-            "type": "approx1",
-            "grName": "Зависимость Q(ΔP)",
-            "dataX": [[9.81, 19.61, 29.43, 39.24, 49.05, 58.86, 68.67, 74.48, 88.29],
-                      [9.81, 19.61, 29.43, 35.32, 39.24, 49.05, 58.86]],
-            "dataY": [[17.72, 35.17, 56.37, 74.54, 95.09, 113.40, 131.99, 151.13, 171.03],
-                      [49.39, 102.25, 168.12, 207.4, 229.2, 287.45, 349.21]],
-            "names": ["$d_1 = 3.95 мм$", "$d_2 = 5.30 мм$"],
-            "nameX": "ΔP, Па",
-            "nameY": "Q, мл/c"
+            "type": "curve",
+            "grName": "Калибровка магнитов",
+            "dataX": [[0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1]],
+            "dataY": [[0, 186, 347, 493, 627, 680, 787, 920]],
+            "names": ["калибровка"],
+            "nameX": "B, мТл",
+            "nameY": "I, А"
             },
     "plt2": {
+            "type": "approx1",
+            "grName": "Семейство зависимостей ЭДС Холла от магнитного поля",
+            "dataY": [[1.22, 2.13, 3.06, 3.82, 4.32, 4.65, 4.93],
+                      [1.07, 2.38, 3.54, 4.58, 5.25, 5.68, 6.07],
+                      [1.35, 2.96, 4.4, 5.64, 6.52, 7.06, 7.29],
+                      [1.58, 3.52, 5.22, 6.62, 7.63, 8.29, 8.7],
+                      [1.74, 3.94, 6.03, 7.7, 8.85, 9.63, 10.08],
+                      [2.06, 4.7, 6.92, 8.8, 10.2, 11.07, 11.57]],
+            "dataX": [[0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920], 
+                      [0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920],
+                      [0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920],
+                      [0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920],
+                      [0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920],
+                      [0.186, 0.347, 0.493, 0.627, 0.680, 0.787, 0.920]],
+            "names": ["I = 30 мА", "I = 40 мА", "I = 50 мА", "I = 60 мА", "I = 70 мА", "I = 80 мА"],
+            "nameX": "B, Тл",
+            "nameY": "Ux, мВ"
+            },   
+        "plt3": {
             "type": "approx2",
-            "grName": "Зависимость ΔP(Δx)",
-            "dataX": [[50, 40, 30, 11.2], [50, 40, 30, 11.2]],
-            "dataY": [[58.86, 51.01, 37.28, 29.43], [49.05, 41.2, 35.32, 49.95]],
-            "names": ["Type 1", "Type 2"],
-            "nameX": "Δx, см",
-            "nameY": "ΔP, Па"
-    }
+            "grName": "график k(I)",
+            "dataX": [[30, 40, 50, 60, 70, 80]],
+            "dataY": [[5.88, 7.08, 8.71, 10.28, 11.90, 13.69]],
+            "names": ["k(I)"],
+            "nameY": "k, мВ/Тл",
+            "nameX": "I, мА"
+            },
     }
 for i in range(1, len(data_pltDataXY)+1):
     for j in range(len(data_pltDataXY.get("plt" + str(i)).get("dataY"))):
@@ -156,7 +173,7 @@ for i in range(1, len(data_pltDataXY)+1):
         type = data_pltDataXY.get("plt" + str(i)).get("type")
         nameX = data_pltDataXY.get("plt" + str(i)).get("nameX")
         nameY = data_pltDataXY.get("plt" + str(i)).get("nameY")
-        plot_scatter(dataX, dataY, 0.1, 0.02)
+        plot_scatter(dataX, dataY, 0.01, 0.02)
         #print(j)
         create_approximate_line(dataX, dataY, j, type, label=names[j], coeff=True)
 
@@ -168,5 +185,5 @@ for i in range(1, len(data_pltDataXY)+1):
     plt.title(data_pltDataXY.get("plt" + str(i)).get("grName"))
     plt.grid(True)
     plt.legend()
-    plt.savefig(f"Laba 1.3.3/graphs/figure{i}")
+    plt.savefig(f"Laba 3.3.4/graphs/figure{i}")
     plt.show()
